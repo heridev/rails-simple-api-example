@@ -34,4 +34,38 @@ class ListingPatientsTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
   end
+
+  test 'Creating a new patient type number 1' do
+    post '/patients',
+      {
+        patient:
+          {
+            first_name: 'Juan Carlos',
+            last_name: 'peres'
+        }
+    }
+    { 'Accept' => 'Mime::JSON', 'Content-Type' => Mime::JSON.to_s}
+
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+
+    patient = json(response.body)
+    assert_equal (patient[:first_name]), 'Juan Carlos'
+  end
+
+  test 'Creating a new patient using json' do
+    post '/patients',
+      {
+      patient:
+      {
+        first_name: 'heriberto',
+        last_name: 'perez'
+      }
+    }.to_json,
+
+    { 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+
+    assert_equal 201, response.status
+    assert_equal Mime::JSON, response.content_type
+  end
 end
