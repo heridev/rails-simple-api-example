@@ -9,7 +9,7 @@ module API
     end
 
     def show
-      patient = Patient.find(params[:id])
+      patient = Patient.find_available(params[:id])
       render json: patient, status: :ok
     end
 
@@ -20,6 +20,26 @@ module API
       else
         render json: patient.errors, status: :unprocessable_entity
       end
+    end
+
+    def update
+      patient = Patient.find(params[:id])
+      if patient.update(patient_params)
+        render json: patient, status: :ok
+      else
+        render json: episode.errors, status: 422
+      end
+    end
+
+    def destroy
+      ## if you want to delete from the database use this method
+      #patient = Patient.find(params[:id])
+      #patient.destroy
+      # if you want to just change the status to not show those records and later you can retrieve those
+      # records you can use this control to emulate the deletion resources
+      patient = Patient.find_available(params[:id])
+      patient.archive
+      head 204
     end
 
     private
