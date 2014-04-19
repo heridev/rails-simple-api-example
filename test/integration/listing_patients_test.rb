@@ -27,4 +27,11 @@ class ListingPatientsTest < ActionDispatch::IntegrationTest
     patient_response = json(response.body, true)
     assert_equal patient.first_name, patient_response[:first_name]
   end
+
+  test 'Return the patients in format json' do
+    Patient.create!(first_name: 'first name', last_name: 'last name')
+    get '/patients'
+    assert_equal 200, response.status
+    assert_equal Mime::JSON, response.content_type
+  end
 end
