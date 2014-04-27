@@ -21,7 +21,7 @@ class ListingPatientsTest < ActionDispatch::IntegrationTest
   end
 
   test 'Return the patient based on his id' do
-    patient = Patient.create!(first_name: 'first name', last_name: 'last name')
+    patient = Patient.create!(first_name: 'first name', last_name: 'last name', available: true)
     get "/patients/#{patient.id}"
     assert_equal 200, response.status
     patient_response = json(response.body, true)

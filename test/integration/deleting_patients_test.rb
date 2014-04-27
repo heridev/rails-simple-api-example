@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DeletingPatientsTest < ActionDispatch::IntegrationTest
   setup do
-    @patient = Patient.create!(first_name: 'first name', last_name: 'last name')
+    @patient = Patient.create!(first_name: 'first name', last_name: 'last name', available: true)
     host! 'api.domain.com'
   end
 
