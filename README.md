@@ -1,4 +1,9 @@
-### This API example is made following the codeschool course Surviving API's with RAILS
+#### This API example is made following the codeschool course
+#### "Surviving API's with RAILS"
+
+```
+http://railsapis.codeschool.com/
+```
 
 #### If you want to retrieve the information using the public api(without token authentication)
 ##### Use the version 2 for the api
@@ -48,7 +53,9 @@ Connection: close
 ```
 
 ##### If you add an invalid token like
+```
 curl -i -H "Authorization: Token token=invalidtoken" http://api.rails-api-example.dev/v3/patients
+```
 
 ##### you are going to see something like:
 
