@@ -30,6 +30,10 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      namespace :v3 do
+        resources :patients
+      end
     end
   end
 end

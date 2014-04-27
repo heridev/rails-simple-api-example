@@ -15,4 +15,8 @@ class ActiveSupport::TestCase
   def json(response, symbolize = true)
     JSON.parse(response, symbolize_names: symbolize)
   end
+
+  def token_header(token)
+    ActionController::HttpAuthentication::Token.encode_credentials(token)
+  end
 end
