@@ -14,6 +14,22 @@ Rails.application.routes.draw do
   constraints subdomain: 'api' do
     namespace :api, path: '/' do
       resources :patients
+
+      namespace :v1 do
+        resources :patients do
+          collection do
+            get :get_version
+          end
+        end
+      end
+
+      namespace :v2 do
+        resources :patients do
+          collection do
+            get :get_version
+          end
+        end
+      end
     end
   end
 end
