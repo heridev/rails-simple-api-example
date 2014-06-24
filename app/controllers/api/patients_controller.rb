@@ -1,11 +1,14 @@
 module API
   class PatientsController < ApplicationController
+
+    respond_to :json
+
     def index
       patients = Patient.all
       if first_name = params[:first_name]
         patients = patients.where(first_name: first_name)
       end
-      render json: patients, status: :ok
+     respond_with patients, callback: params[:callback]
     end
 
     def show
