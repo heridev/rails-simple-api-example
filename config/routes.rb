@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     #resource.resources :events
   #end
 
-  constraints subdomain: 'api' do
+  constraints do
     namespace :api, path: '/' do
       resources :patients, format: :json
 
